@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
     template: `<h2>Contact me on chnvrm@gmail.com</h2>`
 })
 
-export class ContactComponent  { 
+export class ContactComponent  {
   constructor () {
   }
 }

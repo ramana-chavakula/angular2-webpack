@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 import {HomeComponent} from './home/home.component.ts';
-import {ContactComponent} from "./contact/contact.component.ts";
-import {SignupComponent} from "./signup/signup.component.ts";
+import {ContactComponent} from './contact/contact.component.ts';
+import {SignupComponent} from './signup/signup.component.ts';
 
 let appTemplate = require('./app.template.html');
 let styles = require('./app.scss');
@@ -31,7 +31,7 @@ let styles = require('./app.scss');
      component: HomeComponent
   }
 ])
-export class MyAppComponent  { 
+export class MyAppComponent {
   constructor () {
   }
 }

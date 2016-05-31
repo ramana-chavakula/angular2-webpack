@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
     template: `<h2>Home Page</h2>`
 })
 
-export class HomeComponent  { 
+export class HomeComponent  {
   constructor () {
   }
 }

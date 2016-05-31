@@ -2,10 +2,10 @@ import {Component} from '@angular/core';
 import {MatchValidatorDirective} from './matchValidator.directive.ts';
 let signupTemplate = require('./signup.template.html');
 interface Signup {
-  userName: string,
-  email: string,
-  password: string,
-  confirmPassword: string
+  userName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
 @Component({
     selector: 'signup',

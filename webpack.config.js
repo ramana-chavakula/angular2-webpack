@@ -11,6 +11,12 @@ module.exports = {
     filename: "[name].js"
   },
   devtool: 'source-map',
+  devServer: {
+    port: 8080,
+    inline: true,
+    host: 'localhost',
+    historyApiFallback: true
+  },
   module: {
     loaders: [
       {

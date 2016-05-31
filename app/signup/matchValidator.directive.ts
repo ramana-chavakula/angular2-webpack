@@ -13,7 +13,7 @@ export class MatchValidatorDirective implements Validator {
   }
   ngOnInit() {
     _this = this;
-    this.toMatch.addEventListener("change", _this.triggerValidation);
+    this.toMatch.addEventListener('change', _this.triggerValidation);
   }
   triggerValidation () {
     // if (_this.ele.nativeElement.value !== _this.toMatch.value) {
@@ -21,7 +21,7 @@ export class MatchValidatorDirective implements Validator {
     //_this.ele.nativeElement.value = "";
   }
   ngOnDestroy() {
-    this.toMatch.removeEventListener("change", _this.triggerValidation);
+    this.toMatch.removeEventListener('change', _this.triggerValidation);
   }
   validate (control: Control): {[key: string]: any} {
     if (control.value === this.toMatch.value) {
@@ -29,6 +29,6 @@ export class MatchValidatorDirective implements Validator {
       return;
     }
     this.ele.nativeElement.style.border = '1px solid red';
-    return {"match-with": true};
+    return {'match-with': true};
   }
 }
