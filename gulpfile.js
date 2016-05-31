@@ -6,6 +6,7 @@ var tslint = require("gulp-tslint");
 var webpack = require('gulp-webpack');
 var runSequence = require('run-sequence');
 var server = require('gulp-express');
+var surge = require('gulp-surge')
 
 //typescript linting task
 gulp.task('tslint', function () {
@@ -33,11 +34,27 @@ gulp.task('copy', function() {
       .pipe(gulp.dest('www/'))
 });
 
+//copying surge supported files to dist folder
+gulp.task('deploy:copy', function() {
+    return gulp.src(['404.html'])
+      .pipe(gulp.dest('www/'))
+});
+
 //launch express server
 gulp.task('server', function () {
     return server.run(['www/server.js']);
 });
 
+gulp.task('surge', function () {
+  return surge({
+    project: './www',         // Path to your static build directory
+    domain: 'anular2-webpack.surge.sh/'  // Your domain or Surge subdomain
+  });
+})
+
 gulp.task('dist', function () {
   runSequence('clean', ['tslint', 'webpack', 'copy'], 'server');
+});
+gulp.task('deploy', function () {
+  runSequence('deploy:copy', 'surge');
 });
