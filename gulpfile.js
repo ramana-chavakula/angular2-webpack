@@ -4,8 +4,8 @@ var gulp = require('gulp');
 var del = require('del');
 var tslint = require("gulp-tslint");
 var webpack = require('gulp-webpack');
-var webServer = require('gulp-webserver');
 var runSequence = require('run-sequence');
+var server = require('gulp-express');
 
 //typescript linting task
 gulp.task('tslint', function () {
@@ -27,18 +27,17 @@ gulp.task('clean', function () {
   return del('www');
 });
 
-// Launch webserver and LiveReload
-gulp.task('webServer', function () {
-  gulp.src('www')
-    .pipe(webServer({
-      port: '9511',
-      livereload: true,
-      directoryListing: false,
-      open: true,
-      fallback: 'index.html'
-    }));
+//copying server file to dist folder
+gulp.task('copy', function() {
+    return gulp.src(['server.js'])
+      .pipe(gulp.dest('www/'))
+});
+
+//launch express server
+gulp.task('server', function () {
+    return server.run(['www/server.js']);
 });
 
 gulp.task('dist', function () {
-  runSequence('clean', ['tslint', 'webpack'], 'webServer');
+  runSequence('clean', ['tslint', 'webpack', 'copy'], 'server');
 });
