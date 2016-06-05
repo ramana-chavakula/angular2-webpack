@@ -52,9 +52,14 @@ gulp.task('surge', function () {
   });
 })
 
-gulp.task('dist', function () {
-  runSequence('clean', ['tslint', 'webpack', 'copy'], 'server');
+gulp.task('build', function () {
+  runSequence('clean', ['tslint', 'webpack', 'copy']);
 });
+
+gulp.task('dist', function () {
+  runSequence('build', 'server');
+});
+
 gulp.task('deploy', function () {
   runSequence('deploy:copy', 'surge');
 });
