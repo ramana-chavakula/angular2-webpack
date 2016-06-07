@@ -2,7 +2,8 @@
   "name": "angular2-webpack",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server --inline"
+    "start": "webpack-dev-server --inline",
+    "postinstall": "./node_modules/.bin/typings install"
   },
   "license": "ISC",
   "dependencies": {
