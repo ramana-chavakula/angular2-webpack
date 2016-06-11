@@ -1,5 +1,5 @@
 <div>
-  <form #signupForm="ngForm">
+  <form #signupForm="ngForm" novalidate>
     <div>
       <label>User Name: </label>
       <input ngControl="userName" type="text" [(ngModel)]="signupModel.userName" placeholder="Username" required #userName="ngForm"/>
@@ -9,9 +9,10 @@
     </div>
     <div>
       <label>Email: </label>
-      <input type="email" ngControl="email" [(ngModel)]="signupModel.email" placeholder="Email" required #email="ngForm"/>
+      <input type="email" [ngFormControl]="emailControl" [(ngModel)]="signupModel.email" placeholder="Email" required #email="ngForm"/>
       <span [hidden]="email.valid || email.pristine">
-        email is required
+        <span *ngIf="email.errors && email.errors['required'] == true">email is required field</span>
+        <span *ngIf="email.errors && email.errors['user-exists'] == true">email already exists</span>
       </span>
     </div>
     <div>
@@ -20,7 +21,7 @@
     </div>
     <div>
       <label>Confirm Password: </label>
-      <input type="password" ngControl="confirmPassword" [match-with]="password" [(ngModel)]="signupModel.confirmPassword" placeholder="Confirm Password" #confirmPassword="ngForm" />
+      <input type="password" ngControl="confirmPassword" [match-with]="password" [(ngModel)]="signupModel.confirmPassword" placeholder="Confirm Password" required #confirmPassword="ngForm" />
       <span [hidden]="confirmPassword.valid || confirmPassword.pristine">
         password and confirm password must match
       </span>
