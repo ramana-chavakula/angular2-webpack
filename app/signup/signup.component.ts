@@ -20,7 +20,7 @@ interface Signup {
     directives: [MatchValidatorDirective]
 })
 
-export class SignupComponent  implements OnInit{
+export class SignupComponent  implements OnInit {
   signupModel: Signup = {
     userName: '',
     email: '',
