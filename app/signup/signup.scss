@@ -1,0 +1,20 @@
+$error: rgb(213,0,0);;
+.signup-wrapper {
+  padding: 1em;
+  .error {
+    color: $error;
+  }
+  /*div.pristine {
+    input {
+      border-color: rgba(0,0,0,.12);
+    }
+    label {
+      color: #bfbfbf;
+    }
+    &.is-focused {
+      input.textfield__input.ng-pristine {
+        border-color: blue;
+      }
+    }
+  }*/
+}

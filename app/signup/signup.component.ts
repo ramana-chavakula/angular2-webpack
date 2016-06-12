@@ -1,10 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Control, Validators} from '@angular/common';
 import {MatchValidatorDirective} from './matchValidator.directive.ts';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 let signupTemplate = require('./signup.template.html');
+let styles = require('./signup.scss');
 let self: any;
+declare let componentHandler: any;
 interface Signup {
   userName: string;
   email: string;
@@ -14,10 +16,11 @@ interface Signup {
 @Component({
     selector: 'signup',
     template: signupTemplate,
+    styles: ['' + styles],
     directives: [MatchValidatorDirective]
 })
 
-export class SignupComponent  {
+export class SignupComponent  implements OnInit{
   signupModel: Signup = {
     userName: '',
     email: '',
@@ -25,12 +28,19 @@ export class SignupComponent  {
     confirmPassword: ''
   };
   emailControl: Control;
+  requiredControl: Control;
   constructor (private http: Http) {
     self = this;
     this.emailControl = new Control('',
-      undefined,
+      Validators.required,
       self.isUserExists
     );
+    this.requiredControl = new Control('xyz',
+      Validators.required
+    );
+  }
+  ngOnInit () {
+    componentHandler.upgradeAllRegistered();
   }
   isUserExists (control: Control): {[key: string]: any} {
     return self.http.get('/data/users.json')
