@@ -59,8 +59,10 @@ gulp.task('surge', function () {
 })
 
 gulp.task('build', function () {
-  runSequence('clean', ['tslint', 'webpack', 'copy', 'copy:data']);
+  runSequence('clean', 'build-azure');
 });
+
+gulp.task('build-azure', ['tslint', 'webpack', 'copy', 'copy:data']);
 
 gulp.task('dist', function () {
   runSequence('build', 'server');
