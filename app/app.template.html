@@ -1,10 +1,30 @@
-<div>
-  <ul>
-      <li><a [routerLink]="['/']">Home</a></li>
-      <li><a [routerLink]="['/contact']">Contact</a></li>   
-      <li><a [routerLink]="['/signup']">Signup</a></li>   
-  </ul>
-  <div>
-    <router-outlet></router-outlet>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Angular2-Webpack Tutorial</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation mdl-cell--hide-phone">
+        <a class="mdl-navigation__link" [routerLink]="['/']">Home</a>
+        <a class="mdl-navigation__link" [routerLink]="['/contact']">Contact</a>   
+        <a class="mdl-navigation__link" [routerLink]="['/signup']">Signup</a>   
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" [routerLink]="['/']">Home</a>
+        <a class="mdl-navigation__link" [routerLink]="['/contact']">Contact</a>   
+        <a class="mdl-navigation__link" [routerLink]="['/signup']">Signup</a>   
+      </nav>
   </div>
+  <main class="mdl-layout__content">
+    <section class="page-content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
 </div>

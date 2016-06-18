@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-
+var gulpConfig = require('./gulpConfigFile.js');
 // Include Our Plugins
 var del = require('del');
 var tslint = require("gulp-tslint");
@@ -20,7 +20,7 @@ gulp.task('webpack', function () {
   var webpackConig = require('./webpack.production.config.js');
   return gulp.src('app/app.ts')
     .pipe(webpack(webpackConig))
-    .pipe(gulp.dest('www/'));
+    .pipe(gulp.dest(gulpConfig.distLoaction));
 });
 
 // Clean dist folder
@@ -31,7 +31,13 @@ gulp.task('clean', function () {
 //copying server file to dist folder
 gulp.task('copy', function() {
     return gulp.src(['server.js'])
-      .pipe(gulp.dest('www/'))
+      .pipe(gulp.dest(gulpConfig.distLoaction))
+});
+
+//copying json files to data in dist folder
+gulp.task('copy:data', function() {
+    return gulp.src(gulpConfig.data)
+      .pipe(gulp.dest(gulpConfig.distDataLoaction))
 });
 
 //copying surge supported files to dist folder
@@ -53,7 +59,7 @@ gulp.task('surge', function () {
 })
 
 gulp.task('build', function () {
-  runSequence('clean', ['tslint', 'webpack', 'copy']);
+  runSequence('clean', ['tslint', 'webpack', 'copy', 'copy:data']);
 });
 
 gulp.task('dist', function () {
