@@ -25,7 +25,7 @@ export class MatchValidatorDirective implements Validator {
     self = null;
   }
   validate (control: Control): {[key: string]: any} {
-    if (control.value !== this.toMatch.value) {
+    if (control.value && control.value !== this.toMatch.value) {
       return {'match-with': true};
     }
   }

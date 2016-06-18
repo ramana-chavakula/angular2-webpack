@@ -1,19 +1,20 @@
 <div class="signup-wrapper">
   <h2>Signup</h2>
-  <form #signupForm="ngForm" novalidate>
+  <form [ngFormModel]="signupForm" novalidate>
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="userName">User Name</label>
-        <input class="mdl-textfield__input" id="userName" ngControl="userName" type="text" [(ngModel)]="signupModel.userName" required #userName="ngForm"/>
-        <span class="mdl-textfield__error" [hidden]="userName.valid || userName.pristine">
-          Username is a required filed
-        </span>
+        <input class="mdl-textfield__input" id="userName"  type="text" [ngFormControl]="userName"/>
+      </div>
+      <div class="error" [hidden]="userName.valid || userName.pristine">
+        <span *ngIf="userName.errors && userName.errors['required'] == true">username is required field</span>
+        <span *ngIf="userName.errors && userName.errors['minlength']">enter minimum 3 characters</span>
       </div>
     </div>
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" [ngClass]="{'ng-invalid': !email.valid}">
         <label class="mdl-textfield__label" for="email">Email</label>
-        <input class="mdl-textfield__input" id="email" type="email" [ngFormControl]="emailControl" [(ngModel)]="signupModel.email" #email="ngForm"/>
+        <input class="mdl-textfield__input" id="email" type="email" [ngFormControl]="email"/>
       </div>
       <div class="error" [hidden]="email.valid || email.pristine">
         <span *ngIf="email.errors && email.errors['required'] == true">email is required field</span>
@@ -23,22 +24,22 @@
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="password">Password</label>
-        <input class="mdl-textfield__input" id="password" ngControl="password" type="password" [(ngModel)]="signupModel.password" required #password #pwd="ngForm"/>
-        <span class="mdl-textfield__error" [hidden]="pwd.valid || pwd.pristine">
-          password is a required filed
-        </span>
+        <input class="mdl-textfield__input" id="password" type="password" [ngFormControl]="password" #pwd/>
+      </div>
+      <div class="error" [hidden]="password.valid || password.pristine">
+        <span>password is required field</span>
       </div>
     </div>
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="confirmPassword">Confirm Password</label>
-        <input class="mdl-textfield__input" id="confirmPassword" type="password" [ngFormControl]="requiredControl" [match-with]="password" [(ngModel)]="signupModel.confirmPassword" #confirmPassword="ngForm" />
+        <input class="mdl-textfield__input" id="confirmPassword" type="password" [ngFormControl]="confirmPassword" [(ngModel)]="signupForm._value.confirmPassword" [match-with]="pwd"/>
       </div>
       <div class="error" [hidden]="confirmPassword.valid || confirmPassword.pristine">
         <span *ngIf="confirmPassword.errors && confirmPassword.errors['required'] == true">confirm password is required field</span>
         <span *ngIf="confirmPassword.errors && confirmPassword.errors['match-with'] == true">password and confirm password must match</span>
       </div>
     </div>
-    <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect" (click)="signup()" type="submit" [disabled]="!signupForm.form.valid">Submit</button>
+    <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect" (click)="signup()" type="submit" [disabled]="!signupForm.valid">Submit</button>
   </form>
 </div>

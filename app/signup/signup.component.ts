@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Control, Validators} from '@angular/common';
+import {Control, Validators, FORM_DIRECTIVES, FormBuilder, ControlGroup} from '@angular/common';
 import {MatchValidatorDirective} from './matchValidator.directive.ts';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
@@ -7,37 +7,41 @@ let signupTemplate = require('./signup.template.html');
 let styles = require('./signup.scss');
 let self: any;
 declare let componentHandler: any;
-interface Signup {
-  userName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+
 @Component({
     selector: 'signup',
     template: signupTemplate,
     styles: ['' + styles],
-    directives: [MatchValidatorDirective]
+    directives: [FORM_DIRECTIVES, MatchValidatorDirective]
 })
 
 export class SignupComponent  implements OnInit {
-  signupModel: Signup = {
-    userName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  };
-  emailControl: Control;
-  requiredControl: Control;
-  constructor (private http: Http) {
+  userName: Control;
+  email: Control;
+  password: Control;
+  confirmPassword: Control;
+  signupForm: ControlGroup;
+  constructor (private http: Http, formBuilder: FormBuilder) {
     self = this;
-    this.emailControl = new Control('',
+    this.userName = new Control('',
+      Validators.compose([Validators.required, Validators.minLength(3)])
+    );
+    this.email = new Control('',
       Validators.required,
       self.isUserExists
     );
-    this.requiredControl = new Control('xyz',
+    this.password = new Control('',
       Validators.required
     );
+    this.confirmPassword = new Control('',
+      Validators.required
+    );
+    this.signupForm = formBuilder.group({
+      userName: this.userName,
+      email: this.email,
+      password: this.password,
+      confirmPassword: this.confirmPassword
+    });
   }
   ngOnInit () {
     componentHandler.upgradeAllRegistered();
@@ -58,6 +62,6 @@ export class SignupComponent  implements OnInit {
       });
   }
   signup () {
-    alert('ok');
+    console.log(this.signupForm._value);
   }
 }
