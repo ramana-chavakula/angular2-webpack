@@ -1,0 +1,25 @@
+<div class="new-feed">
+  <h2 class="title">New Feed</h2>
+  <form #newFeed="ngForm" class="mdl-grid" novalidate>
+    <div class="mdl-cell mdl-cell--12-col">
+      <div class="row mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label" for="title">Title</label>
+        <input class="mdl-textfield__input" id="title" type="text" ngControl="title" [(ngModel)]="newFeed.title" required/>
+          <span class="mdl-textfield__error">required field</span>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--12-col">
+      <div class="row mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label class="mdl-textfield__label" for="description">Description</label>
+        <textarea rows="5" class="mdl-textfield__input" id="description" ngControl="description" [(ngModel)]="newFeed.description" required></textarea>
+          <span class="mdl-textfield__error">required field</span>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="cancelFeed()" type="reset">Cancel</button>
+    </div>
+    <div class="mdl-cell mdl-cell--2-col">
+      <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect" (click)="addFeed(newFeed)" type="submit" [disabled]="!newFeed.form.valid">Add</button>
+    </div>
+  </form>
+</div>

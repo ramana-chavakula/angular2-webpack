@@ -1,0 +1,17 @@
+.feeds-wrapper {
+  .view-feed {
+    height: 1em;
+  }
+  .card {
+    .card-body {
+      height: 80px;
+    }
+  }
+  .align-right {
+    float: right;
+    margin-right: 2em;
+    &:after {
+      clear: right;
+    }
+  }
+}

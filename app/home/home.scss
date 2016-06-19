@@ -1,0 +1,10 @@
+.align-right {
+  float: right;
+  margin-right: 2em;
+  &:after {
+    clear: right;
+  }
+}
+.title {
+  padding-left: 12px;
+}

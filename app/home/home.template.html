@@ -1,0 +1,7 @@
+<div>
+  <div *ngIf="!isNewFeed">
+    <h2 *ngIf="!isViewFeed" class="title">Feeds <button (click)="toogleAddNewFeed()" class="align-right mdl-button mdl-js-button mdl-button--primary mdl-button--fab mdl-js-ripple-effect"><i class="material-icons">add</i></button></h2>
+    <feeds [data]="feeds" (viewFeed)="viewFeed($event)"></feeds>
+  </div>
+  <new-feed *ngIf="isNewFeed" (add)="addFeed($event)" (cancel)="cancel()"></new-feed>
+</div>
