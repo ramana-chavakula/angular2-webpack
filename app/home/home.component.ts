@@ -30,7 +30,7 @@ export class HomeComponent  implements OnInit {
     this.isNewFeed = !this.isNewFeed;
   }
   addFeed (feed: any) {
-    this.feeds.push(feed);
+    this.feeds.unshift(feed);
     this.toogleAddNewFeed();
   }
   cancel () {
