@@ -6,7 +6,8 @@ var tslint = require("gulp-tslint");
 var webpack = require('gulp-webpack');
 var runSequence = require('run-sequence');
 var server = require('gulp-express');
-var surge = require('gulp-surge')
+var surge = require('gulp-surge');
+var karmaServer = require('karma').Server;
 
 //typescript linting task
 gulp.task('tslint', function () {
@@ -70,4 +71,18 @@ gulp.task('dist', function () {
 
 gulp.task('deploy', function () {
   runSequence('deploy:copy', 'surge');
+});
+
+gulp.task('test', function (done) {
+  return new karmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('test:watch', function (done) {
+  return new karmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false
+  }, done).start();
 });

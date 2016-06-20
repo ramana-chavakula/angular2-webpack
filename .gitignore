@@ -3,4 +3,5 @@ typings/*
 www/*
 .vscode/
 *.map
+coverage/
 npm-debug.log
