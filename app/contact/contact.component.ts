@@ -9,7 +9,7 @@ import {Component} from '@angular/core';
 })
 
 export class ContactComponent  {
-  message: string = "Contact me on chnvrm@gmail.com";
+  message: string = 'Contact me on chnvrm@gmail.com';
   constructor () {
   }
 }

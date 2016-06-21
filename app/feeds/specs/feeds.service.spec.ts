@@ -23,17 +23,17 @@ describe('FeedsService', () => {
       provide(Http, {useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
         return new Http(backend, defaultOptions);
       }, deps: [MockBackend, BaseRequestOptions]}),
-    ]
+    ];
   });
-  it('can retrive feeds', inject([FeedsService, MockBackend], 
+  it('can retrive feeds', inject([FeedsService, MockBackend],
     fakeAsync((feedsService: FeedsService, mockBackend: MockBackend) => {
       let result: any;
       mockBackend.connections.subscribe((connection: any) => {
-        expect(connection.request.url).toBe('/data/feeds.json'); 
+        expect(connection.request.url).toBe('/data/feeds.json');
         let response = new ResponseOptions({
           body: [{
-            "title": "Post 1",
-            "description": "Post Description 1"
+            'title': 'Post 1',
+            'description': 'Post Description 1'
           }]
         });
         connection.mockRespond(new Response(response));
