@@ -2,7 +2,7 @@ import {
   beforeEach, beforeEachProviders, describe,
   expect, it, inject
 } from '@angular/core/testing';
-import { ContactComponent } from '../contact.component.ts';
+import { ContactComponent } from './contact.component.ts';
 
 beforeEachProviders(() => [ContactComponent]);
 
