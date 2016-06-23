@@ -11,9 +11,10 @@ import {
 import {FeedsComponent} from '../feeds.component.ts';
 
 setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
-beforeEachProviders(() => [FeedsComponent, TestComponentBuilder]);
 
 describe('FeedsComponent', () => {
+  beforeEachProviders(() => [FeedsComponent, TestComponentBuilder]);
+
   it('can render feeds list', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
@@ -21,7 +22,7 @@ describe('FeedsComponent', () => {
         componentFixture.componentInstance.feeds = [{
           'title': 'Post 1',
           'description': 'Post Description 1'
-        },{
+        }, {
           'title': 'Post 2',
           'description': 'Post Description 2'
         }];
@@ -39,7 +40,7 @@ describe('FeedsComponent', () => {
         componentFixture.componentInstance.feeds = [{
           'title': 'Post 1',
           'description': 'Post Description 1'
-        },{
+        }, {
           'title': 'Post 2',
           'description': 'Post Description 2'
         }];
@@ -64,7 +65,7 @@ describe('FeedsComponent', () => {
         componentFixture.componentInstance.feeds = [{
           'title': 'Post 1',
           'description': 'Post Description 1'
-        },{
+        }, {
           'title': 'Post 2',
           'description': 'Post Description 2'
         }];

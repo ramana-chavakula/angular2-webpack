@@ -25,6 +25,7 @@ describe('FeedsService', () => {
       }, deps: [MockBackend, BaseRequestOptions]}),
     ];
   });
+
   it('can retrive feeds', inject([FeedsService, MockBackend],
     fakeAsync((feedsService: FeedsService, mockBackend: MockBackend) => {
       let result: any;
