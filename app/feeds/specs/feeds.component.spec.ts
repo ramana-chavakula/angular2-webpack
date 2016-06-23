@@ -17,7 +17,7 @@ describe('FeedsComponent', () => {
   it('can render feeds list', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
-        const element = componentFixture.nativeElement;
+        let element = componentFixture.nativeElement;
         componentFixture.componentInstance.feeds = [{
           'title': 'Post 1',
           'description': 'Post Description 1'
@@ -33,7 +33,7 @@ describe('FeedsComponent', () => {
   it('can select a feed to view', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
-        const element = componentFixture.nativeElement;
+        let element = componentFixture.nativeElement;
         let componentInstance = componentFixture.componentInstance;
         spyOn(componentInstance.viewFeed, 'emit');
         componentFixture.componentInstance.feeds = [{
@@ -58,7 +58,7 @@ describe('FeedsComponent', () => {
   it('can returns to feeds list', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
-        const element = componentFixture.nativeElement;
+        let element = componentFixture.nativeElement;
         let componentInstance = componentFixture.componentInstance;
         spyOn(componentInstance.viewFeed, 'emit');
         componentFixture.componentInstance.feeds = [{
