@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Control, Validators, FORM_DIRECTIVES, FormBuilder, ControlGroup} from '@angular/common';
+//import {FORM_DIRECTIVES} from '@angular/common';
+import {REACTIVE_FORM_DIRECTIVES, Validators, FormControl, FormGroup} from '@angular/forms';
 import {MatchValidatorDirective} from './matchValidator.directive.ts';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
@@ -12,31 +13,32 @@ declare let componentHandler: any;
     selector: 'signup',
     template: signupTemplate,
     styles: ['' + styles],
-    directives: [FORM_DIRECTIVES, MatchValidatorDirective]
+    directives: [REACTIVE_FORM_DIRECTIVES, MatchValidatorDirective]
 })
 
 export class SignupComponent  implements OnInit {
-  userName: Control;
-  email: Control;
-  password: Control;
-  confirmPassword: Control;
-  signupForm: ControlGroup;
-  constructor (private http: Http, formBuilder: FormBuilder) {
+  userName: FormControl;
+  email: FormControl;
+  password: FormControl;
+  confirmPassword: FormControl;
+  signupForm: FormGroup;
+  cpwd: string;
+  constructor (private http: Http) {
     self = this;
-    this.userName = new Control('',
-      Validators.compose([Validators.required, Validators.minLength(3)])
+    this.userName = new FormControl('',
+      [Validators.required, Validators.minLength(3)]
     );
-    this.email = new Control('',
+    this.email = new FormControl('',
       Validators.required,
       self.isUserExists
     );
-    this.password = new Control('',
+    this.password = new FormControl('',
       Validators.required
     );
-    this.confirmPassword = new Control('',
+    this.confirmPassword = new FormControl('',
       Validators.required
     );
-    this.signupForm = formBuilder.group({
+    this.signupForm = new FormGroup({
       userName: this.userName,
       email: this.email,
       password: this.password,
@@ -46,7 +48,7 @@ export class SignupComponent  implements OnInit {
   ngOnInit () {
     componentHandler.upgradeAllRegistered();
   }
-  isUserExists (control: Control): {[key: string]: any} {
+  isUserExists (control: FormControl): {[key: string]: any} {
     return self.http.get('/data/users.json')
       .map((response: Response) => response.json())
       .toPromise()
@@ -62,6 +64,7 @@ export class SignupComponent  implements OnInit {
       });
   }
   signup () {
-    console.log(this.signupForm._value);
+    console.log(this.signupForm);
+    console.log(this.signupForm.value);
   }
 }

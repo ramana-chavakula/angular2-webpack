@@ -1,10 +1,10 @@
 <div class="signup-wrapper">
   <h2>Signup</h2>
-  <form [ngFormModel]="signupForm" novalidate>
+  <form [formGroup]="signupForm" novalidate>
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="userName">User Name</label>
-        <input class="mdl-textfield__input" id="userName"  type="text" [ngFormControl]="userName"/>
+        <input class="mdl-textfield__input" id="userName"  type="text" formControlName="userName"/>
       </div>
       <div class="error" [hidden]="userName.valid || userName.pristine">
         <span *ngIf="userName.errors && userName.errors['required'] == true">username is required field</span>
@@ -14,7 +14,7 @@
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" [ngClass]="{'ng-invalid': !email.valid}">
         <label class="mdl-textfield__label" for="email">Email</label>
-        <input class="mdl-textfield__input" id="email" type="email" [ngFormControl]="email"/>
+        <input class="mdl-textfield__input" id="email" type="email" formControlName="email"/>
       </div>
       <div class="error" [hidden]="email.valid || email.pristine">
         <span *ngIf="email.errors && email.errors['required'] == true">email is required field</span>
@@ -24,7 +24,7 @@
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="password">Password</label>
-        <input class="mdl-textfield__input" id="password" type="password" [ngFormControl]="password" #pwd/>
+        <input class="mdl-textfield__input" id="password" type="password" formControlName="password" #pwd/>
       </div>
       <div class="error" [hidden]="password.valid || password.pristine">
         <span>password is required field</span>
@@ -33,7 +33,7 @@
     <div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="confirmPassword">Confirm Password</label>
-        <input class="mdl-textfield__input" id="confirmPassword" type="password" [ngFormControl]="confirmPassword" [(ngModel)]="signupForm._value.confirmPassword" [match-with]="pwd"/>
+        <input class="mdl-textfield__input" id="confirmPassword" type="password" formControlName="confirmPassword" [(ngModel)]="signupForm._value.confirmPassword" [match-with]="pwd"/>
       </div>
       <div class="error" [hidden]="confirmPassword.valid || confirmPassword.pristine">
         <span *ngIf="confirmPassword.errors && confirmPassword.errors['required'] == true">confirm password is required field</span>

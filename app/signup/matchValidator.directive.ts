@@ -1,4 +1,5 @@
-import {Validator, NG_VALIDATORS, Control} from '@angular/common';
+import {FormControl, Validator, NG_VALIDATORS} from '@angular/forms';
+import {NgZone} from "@angular/core";
 import {provide, Directive, Input, Output, EventEmitter, ElementRef, OnInit, OnDestroy} from '@angular/core';
 
 let self: any;
@@ -24,7 +25,7 @@ export class MatchValidatorDirective implements Validator {
     this.toMatch.removeEventListener('change', self.triggerValidation);
     self = null;
   }
-  validate (control: Control): {[key: string]: any} {
+  validate (control: FormControl): {[key: string]: any} {
     if (control.value && control.value !== this.toMatch.value) {
       return {'match-with': true};
     }
