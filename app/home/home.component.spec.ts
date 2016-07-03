@@ -1,6 +1,6 @@
 import {
   beforeEach, beforeEachProviders, describe,
-  expect, it, inject, injectAsync, setBaseTestProviders
+  expect, it, inject, async, setBaseTestProviders
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
@@ -37,7 +37,7 @@ describe('HomeComponent', () => {
 
   it('can fetch the feeds list', inject([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
-      .overrideProviders(HomeComponent, [provide(FeedsService, {useClass: MockFeedsService})])
+      .overrideViewProviders(HomeComponent, [provide(FeedsService, {useClass: MockFeedsService})])
       .createAsync(HomeComponent).then((componentFixture: ComponentFixture<any>) => {
         let element = componentFixture.nativeElement;
         componentFixture.detectChanges();

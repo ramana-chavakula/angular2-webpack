@@ -1,6 +1,6 @@
 import {
   beforeEach, beforeEachProviders, describe,
-  expect, it, inject, injectAsync, setBaseTestProviders
+  expect, it, inject, async, setBaseTestProviders
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
@@ -15,7 +15,7 @@ setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAM
 describe('FeedsComponent', () => {
   beforeEachProviders(() => [FeedsComponent, TestComponentBuilder]);
 
-  it('can render feeds list', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
+  it('can render feeds list', async(inject([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
         let element = componentFixture.nativeElement;
@@ -29,9 +29,9 @@ describe('FeedsComponent', () => {
         componentFixture.detectChanges();
         expect(element.querySelectorAll('.mdl-card__title').length).toBe(2);
       });
-  }));
+  })));
 
-  it('can select a feed to view', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
+  it('can select a feed to view', async(inject([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
         let element = componentFixture.nativeElement;
@@ -54,9 +54,9 @@ describe('FeedsComponent', () => {
         expect(element.querySelector('h2').innerHTML).toContain('Post 2');
         expect(element.querySelector('.mdl-cell--12-col > div').innerHTML).toBe('Post Description 2');
       });
-  }));
+  })));
 
-  it('can returns to feeds list', injectAsync([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
+  it('can returns to feeds list', async(inject([TestComponentBuilder], (testComponentBuilder: TestComponentBuilder) => {
     return testComponentBuilder
       .createAsync(FeedsComponent).then((componentFixture: ComponentFixture<any>) => {
         let element = componentFixture.nativeElement;
@@ -81,5 +81,5 @@ describe('FeedsComponent', () => {
         expect(componentInstance.viewFeed.emit).toHaveBeenCalledWith(false);
         expect(componentInstance.viewFeed.emit.calls.count()).toBe(2);
       });
-  }));
+  })));
 });

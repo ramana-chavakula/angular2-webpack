@@ -5,6 +5,11 @@ import {SignupComponent} from './signup/signup.component.ts';
 
 let routes: RouterConfig = [
   {
+    path: '**',
+    redirectTo: '/home',
+    terminal: true
+  },
+  {
     path: '',
     redirectTo: '/home',
     terminal: true
