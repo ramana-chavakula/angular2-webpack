@@ -1,5 +1,4 @@
 import {FormControl, Validator, NG_VALIDATORS} from '@angular/forms';
-import {NgZone} from "@angular/core";
 import {provide, Directive, Input, Output, EventEmitter, ElementRef, OnInit, OnDestroy} from '@angular/core';
 
 let self: any;
