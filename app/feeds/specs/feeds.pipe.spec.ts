@@ -1,13 +1,10 @@
-import {
-  beforeEach, beforeEachProviders, describe,
-  expect, it, inject
-} from '@angular/core/testing';
+import {inject, addProviders} from '@angular/core/testing';
 import {EllipsisAfterPipe} from '../feeds.pipe.ts';
 
 describe('EllipsisAfterPipe', () => {
   let ellipsisAfterPipe: EllipsisAfterPipe;
 
-  beforeEachProviders(() => [EllipsisAfterPipe]);
+  beforeEach(() => {addProviders([EllipsisAfterPipe])});
 
   beforeEach(inject([EllipsisAfterPipe], (_ellipsisAfterPipe: EllipsisAfterPipe) => {
     ellipsisAfterPipe = _ellipsisAfterPipe;

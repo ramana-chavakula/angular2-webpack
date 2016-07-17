@@ -1,20 +1,16 @@
 <div class="feeds-wrapper">
-  <div *ngIf="feedIndex == -1" class="mdl-grid">
+  <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--4-col" *ngFor="let feed of feeds; let index = index;">
       <div class="mdl-card mdl-shadow--2dp card">
         <div class="mdl-card__title">
             <h2 class="mdl-card__title-text" [innerHTML]="feed.title | ellipsisAfter : 20"></h2>
         </div>
-        <div class="mdl-card__supporting-text card-body  mdl-card--border" [innerHTML]="feed.description | ellipsisAfter : 200">
+        <div class="mdl-card__supporting-text card-body mdl-card--border" [innerHTML]="feed.description | ellipsisAfter : 200">
         </div>
         <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="select(index)">View</a>
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" (click)="viewFeed(index)">View</a>
         </div>
       </div>
     </div>
-  </div>
-  <div *ngIf="feedIndex != -1" class="mdl-cell mdl-cell--12-col">
-    <h2> {{feeds[feedIndex].title}} <button (click)="cancel()" class="align-right mdl-button mdl-js-button mdl-button--primary mdl-js-ripple-effect">back</button></h2>
-    <div [innerHTML]="feeds[feedIndex].description"></div>
   </div>
 </div>

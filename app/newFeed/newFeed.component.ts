@@ -1,7 +1,8 @@
-import {Component, Input, Output, EventEmitter, AfterViewInit} from '@angular/core';
+import {Component, AfterViewInit} from '@angular/core';
+import {Router} from '@angular/router';
 let template = require('./newFeed.template.html');
 let styles = require('./newFeed.scss');
-import {IFeed} from './IFeed.ts';
+import {IFeed} from '../feeds/IFeed.ts';
 declare let componentHandler: any;
 
 @Component({
@@ -11,21 +12,21 @@ declare let componentHandler: any;
 })
 
 export class NewFeedComponent implements AfterViewInit {
-  @Output() add: EventEmitter <IFeed> = new EventEmitter <IFeed>();
-  @Output() cancel: EventEmitter <any> = new EventEmitter <any>();
   newFeed: IFeed = {
+    id: '',
     title: '',
     description: ''
   };
-  constructor () {
+  constructor (private router: Router) {
   }
   ngAfterViewInit () {
     componentHandler.upgradeAllRegistered();
   }
-  addFeed (feed: IFeed) {
-    this.add.emit(feed);
+  add (feed: IFeed) {
+    console.log(feed);
+    this.router.navigate(['feeds']);
   }
-  cancelFeed () {
-    this.cancel.emit(null);
+  cancel () {
+    this.router.navigate(['feeds']);
   }
 }

@@ -2,11 +2,31 @@ import {provideRouter, RouterConfig} from '@angular/router';
 import {HomeComponent} from './home/home.component.ts';
 import {ContactComponent} from './contact/contact.component.ts';
 import {SignupComponent} from './signup/signup.component.ts';
+import {FeedsListComponent} from './feeds/feedsList.component.ts';
+import {FeedComponent} from './feed/feed.component.ts';
+import {NewFeedComponent} from './newFeed/newFeed.component.ts';
 
 let routes: RouterConfig = [
   {
-    path: '',
-    component: HomeComponent
+    path: 'feeds',
+    component: HomeComponent,
+    children: [
+      {
+        path: '',
+        component: FeedsListComponent
+      },
+      {
+        path: 'feed/:id',
+        component: FeedComponent,
+        data: {
+          feed: null
+        }
+      },
+      {
+        path: 'new',
+        component: NewFeedComponent
+      }
+    ]
   },
   {
     path: 'contact',
@@ -18,7 +38,7 @@ let routes: RouterConfig = [
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'feeds',
     terminal: true
   }
 ];

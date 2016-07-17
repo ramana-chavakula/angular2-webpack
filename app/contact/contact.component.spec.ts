@@ -1,13 +1,10 @@
-import {
-  beforeEach, beforeEachProviders, describe,
-  expect, it, inject
-} from '@angular/core/testing';
+import {inject, addProviders} from '@angular/core/testing';
 import { ContactComponent } from './contact.component.ts';
 
 describe('ContactComponent', () => {
   let contactComponent: ContactComponent;
 
-  beforeEachProviders(() => [ContactComponent]);
+  beforeEach(() => {addProviders([ContactComponent])});
 
   beforeEach(inject([ContactComponent], (_contactComponent: ContactComponent) => {
     contactComponent = _contactComponent;

@@ -8,7 +8,18 @@ export class FeedsService {
   constructor(private http: Http) {
   }
   getFeeds (): Observable <IFeed[]> {
-    return this.http.get('/data/feeds.json')
+    return this.http.get('./data/feeds.json')
     .map((response: Response) => response.json());
+  }
+  getFeed (id: string): Observable <IFeed> {
+    return this.http.get('./data/feeds.json')
+    .map((response: Response) => {
+      let feeds: IFeed [] = response.json();
+      for(let feed of feeds) {
+        if (feed.id === id) {
+          return feed;
+        }
+      }
+    });
   }
 }

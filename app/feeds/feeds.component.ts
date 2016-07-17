@@ -1,29 +1,24 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {EllipsisAfterPipe} from './feeds.pipe.ts';
+import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
+import {IFeed} from './IFeed.ts';
 let template = require('./feeds.template.html');
 let styles = require('./feeds.scss');
-import {IFeed} from './IFeed.ts';
 declare let componentHandler: any;
 
 @Component({
-    selector: 'feeds',
-    template: template,
-    styles: ['' + styles],
-    pipes: [EllipsisAfterPipe]
+  selector: 'feeds',
+  template: template,
+  styles: ['' + styles],
+  pipes: [EllipsisAfterPipe],
+  directives: [ROUTER_DIRECTIVES]
 })
 
 export class FeedsComponent {
   @Input('data') feeds: IFeed[];
-  @Output() viewFeed: EventEmitter <boolean> = new EventEmitter <boolean>();
-  feedIndex: number = -1;
-  constructor () {
+  constructor (private router: Router, private activatedRoute: ActivatedRoute) {
   }
-  select(index: number) {
-    this.feedIndex = index;
-    this.viewFeed.emit(true);
-  }
-  cancel () {
-    this.feedIndex = -1;
-    this.viewFeed.emit(false);
+  viewFeed(index: number) {
+    this.router.navigate(['feed', this.feeds[index].id], {relativeTo: this.activatedRoute});
   }
 }

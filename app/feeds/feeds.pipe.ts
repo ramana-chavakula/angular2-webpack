@@ -5,6 +5,6 @@ export class EllipsisAfterPipe {
     if (value.length < args) {
       return value;
     }
-    return value.substring(0, args) + ' ' + '...';
+    return value.substring(0, args) + ' ...';
   }
 }

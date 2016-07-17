@@ -1,0 +1,7 @@
+.align-right {
+  float: right;
+  margin-right: 2em;
+  &:after {
+    clear: right;
+  }
+}
