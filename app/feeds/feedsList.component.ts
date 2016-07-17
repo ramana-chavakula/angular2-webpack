@@ -11,8 +11,8 @@ let styles = require('./feedsList.scss');
     selector: 'FeedsList',
     template: template,
     styles: ['' + styles],
-    directives: [FeedsComponent, ROUTER_DIRECTIVES]
-    //providers: [FeedsService]
+    directives: [FeedsComponent, ROUTER_DIRECTIVES],
+    providers: [FeedsService]
 })
 
 export class FeedsListComponent implements OnInit, OnDestroy {
