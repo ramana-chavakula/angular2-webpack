@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 let template = require('./newFeed.template.html');
 let styles = require('./newFeed.scss');
 import {IFeed} from '../feeds/IFeed.ts';
+import {ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot} from '@angular/router';
 declare let componentHandler: any;
 
 @Component({
@@ -28,5 +29,13 @@ export class NewFeedComponent implements AfterViewInit {
   }
   cancel () {
     this.router.navigate(['feeds']);
+  }
+}
+
+export class CanDeactiveNewFeed implements CanDeactivate <NewFeedComponent> {
+  constructor () {
+  }
+  canDeactivate (component: NewFeedComponent, route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean {
+    return confirm('Do you really want to leave the page?');
   }
 }

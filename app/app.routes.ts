@@ -4,7 +4,7 @@ import {ContactComponent} from './contact/contact.component.ts';
 import {SignupComponent} from './signup/signup.component.ts';
 import {FeedsListComponent} from './feeds/feedsList.component.ts';
 import {FeedComponent} from './feed/feed.component.ts';
-import {NewFeedComponent} from './newFeed/newFeed.component.ts';
+import {NewFeedComponent, CanDeactiveNewFeed} from './newFeed/newFeed.component.ts';
 
 let routes: RouterConfig = [
   {
@@ -24,7 +24,8 @@ let routes: RouterConfig = [
       },
       {
         path: 'new',
-        component: NewFeedComponent
+        component: NewFeedComponent,
+        canDeactivate: [CanDeactiveNewFeed]
       }
     ]
   },
