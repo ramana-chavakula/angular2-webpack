@@ -45,5 +45,6 @@ let routes: RouterConfig = [
 ];
 
 export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes)
+  provideRouter(routes),
+  CanDeactiveNewFeed
 ];
