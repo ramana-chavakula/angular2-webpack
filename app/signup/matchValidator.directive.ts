@@ -17,8 +17,11 @@ export class MatchValidatorDirective implements Validator {
     this.toMatch.addEventListener('change', self.triggerValidation);
   }
   triggerValidation () {
+    let originalVal = self.elementRef.nativeElement.value;
     self.ngModelChange.emit('');
-    self.ngModelChange.emit(self.elementRef.nativeElement.value);
+    setTimeout(function () {
+      self.ngModelChange.emit(originalVal);
+    }, 0);
   }
   ngOnDestroy() {
     this.toMatch.removeEventListener('change', self.triggerValidation);
