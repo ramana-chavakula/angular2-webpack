@@ -1,14 +1,5 @@
-import {bootstrap} from '@angular/platform-browser-dynamic';
-import {MyAppComponent} from './app.component.ts';
-import {enableProdMode} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {APP_ROUTER_PROVIDERS} from './app.routes';
-import {disableDeprecatedForms, provideForms} from '@angular/forms';
-// enable production mode and thus disable debugging information
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+// import {enableProdMode} from '@angular/core';
+import {AppModule} from './app.module';
 //enableProdMode();
-bootstrap(MyAppComponent, [
-  APP_ROUTER_PROVIDERS,
-  HTTP_PROVIDERS,
-  disableDeprecatedForms(),
-  provideForms()
-]);
+platformBrowserDynamic().bootstrapModule(AppModule);

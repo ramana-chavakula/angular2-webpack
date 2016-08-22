@@ -2,16 +2,15 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {FeedsService} from '../feeds/feeds.service.ts';
 import {FeedsComponent} from './feeds.component.ts';
 import {IFeed} from '../feeds/IFeed.ts';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Subscription} from 'rxjs';
 let template = require('./feedsList.template.html');
 let styles = require('./feedsList.scss');
 
 @Component({
-    selector: 'FeedsList',
+    selector: 'feeds-list',
     template: template,
     styles: ['' + styles],
-    directives: [FeedsComponent, ROUTER_DIRECTIVES],
+    directives: [FeedsComponent],
     providers: [FeedsService]
 })
 

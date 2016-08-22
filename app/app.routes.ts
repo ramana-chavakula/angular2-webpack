@@ -1,50 +1,16 @@
-import {provideRouter, RouterConfig} from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
+
 import {HomeComponent} from './home/home.component.ts';
 import {ContactComponent} from './contact/contact.component.ts';
 import {SignupComponent} from './signup/signup.component.ts';
-import {FeedsListComponent} from './feeds/feedsList.component.ts';
-import {FeedComponent} from './feed/feed.component.ts';
-import {NewFeedComponent, CanDeactiveNewFeed} from './newFeed/newFeed.component.ts';
 
-let routes: RouterConfig = [
-  {
-    path: 'feeds',
-    component: HomeComponent,
-    children: [
-      {
-        path: '',
-        component: FeedsListComponent
-      },
-      {
-        path: 'feed/:id',
-        component: FeedComponent,
-        data: {
-          feed: null
-        }
-      },
-      {
-        path: 'new',
-        component: NewFeedComponent,
-        canDeactivate: [CanDeactiveNewFeed]
-      }
-    ]
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'feeds',
-    terminal: true
-  }
+const appRoutes: Routes = [
+  {path: 'contact', component: ContactComponent},
+  {path: 'signup', component: SignupComponent},
+  {path: '**', component: ContactComponent}
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes),
-  CanDeactiveNewFeed
+export const routingProviders: any[] = [
 ];
+
+export const routing = RouterModule.forRoot(appRoutes);

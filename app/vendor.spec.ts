@@ -1,6 +1,6 @@
 import 'rxjs';
 //shims
-import 'es6-shim';
+import 'core-js/client/shim.js';
 import 'reflect-metadata';
 require('zone.js/dist/zone');
 require('zone.js/dist/fake-async-test');

@@ -1,6 +1,6 @@
 <div class="new-feed">
   <h2 class="title">New Feed</h2>
-  <form #newFeed="ngForm" class="mdl-grid" novalidate>
+  <form class="mdl-grid" novalidate>
     <div class="mdl-cell mdl-cell--12-col">
       <div class="row mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <label class="mdl-textfield__label" for="title">Title</label>
@@ -19,7 +19,7 @@
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="cancel()" type="reset">Cancel</button>
     </div>
     <div class="mdl-cell mdl-cell--2-col">
-      <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect" (click)="add(newFeed)" type="button" [disabled]="!newFeed.form.valid">Add</button>
+      <button class="mdl-button mdl-js-button mdl-button--primary mdl-button--raised mdl-js-ripple-effect" (click)="add(newFeed)" type="button">Add</button>
     </div>
   </form>
 </div>

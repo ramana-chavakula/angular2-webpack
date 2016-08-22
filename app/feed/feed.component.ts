@@ -7,7 +7,7 @@ let template = require('./feed.template.html');
 let styles = require('./feed.scss');
 
 @Component({
-    selector: 'feeds',
+    selector: 'feed',
     template: template,
     styles: ['' + styles],
     providers: [FeedsService]

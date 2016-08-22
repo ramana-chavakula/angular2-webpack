@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {EllipsisAfterPipe} from './feeds.pipe.ts';
-import {ROUTER_DIRECTIVES, Router, ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {IFeed} from './IFeed.ts';
 let template = require('./feeds.template.html');
 let styles = require('./feeds.scss');
@@ -10,8 +10,7 @@ declare let componentHandler: any;
   selector: 'feeds',
   template: template,
   styles: ['' + styles],
-  pipes: [EllipsisAfterPipe],
-  directives: [ROUTER_DIRECTIVES]
+  pipes: [EllipsisAfterPipe]
 })
 
 export class FeedsComponent {
@@ -19,6 +18,6 @@ export class FeedsComponent {
   constructor (private router: Router, private activatedRoute: ActivatedRoute) {
   }
   viewFeed(index: number) {
-    this.router.navigate(['feed', this.feeds[index].id], {relativeTo: this.activatedRoute});
+    this.router.navigate(['.', this.feeds[index].id], {relativeTo: this.activatedRoute});
   }
 }
