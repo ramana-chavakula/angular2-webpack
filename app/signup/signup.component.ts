@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-//import {FORM_DIRECTIVES} from '@angular/common';
-import {REACTIVE_FORM_DIRECTIVES, Validators, FormControl, FormGroup} from '@angular/forms';
+import {Validators, FormControl, FormGroup} from '@angular/forms';
 import {MatchValidatorDirective} from './matchValidator.directive.ts';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
@@ -12,8 +11,7 @@ declare let componentHandler: any;
 @Component({
     selector: 'signup',
     template: signupTemplate,
-    styles: ['' + styles],
-    directives: [REACTIVE_FORM_DIRECTIVES, MatchValidatorDirective]
+    styles: ['' + styles]
 })
 
 export class SignupComponent  implements OnInit {

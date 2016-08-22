@@ -10,7 +10,6 @@ let styles = require('./feedsList.scss');
     selector: 'feeds-list',
     template: template,
     styles: ['' + styles],
-    directives: [FeedsComponent],
     providers: [FeedsService]
 })
 
