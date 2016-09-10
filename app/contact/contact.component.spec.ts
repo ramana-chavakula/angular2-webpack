@@ -1,20 +1,29 @@
-// import {inject, addProviders} from '@angular/core/testing';
-// import { ContactComponent } from './contact.component.ts';
+import {TestBed} from '@angular/core/testing';
+import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
 
-// describe('ContactComponent', () => {
-//   let contactComponent: ContactComponent;
+import {ContactComponent} from './contact.component.ts';
 
-//   beforeEach(() => {addProviders([ContactComponent])});
+describe('ContactComponent', () => {
+  TestBed.initTestEnvironment(
+    BrowserDynamicTestingModule,
+    platformBrowserDynamicTesting()
+  );
 
-//   beforeEach(inject([ContactComponent], (_contactComponent: ContactComponent) => {
-//     contactComponent = _contactComponent;
-//   }));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ContactComponent]
+    });
+  });
 
-//   it('should create the component', () => {
-//     expect(contactComponent).toBeTruthy();
-//   });
-
-//   it('should display a message', () => {
-//     expect(contactComponent.message).toEqual('Contact me on chnvrm@gmail.com');
-//   });
-// });
+  it('should create the component and display a message', () => {
+    return TestBed
+      .compileComponents().then(() => {
+        let componentFixture = TestBed.createComponent(ContactComponent);
+        let element = componentFixture.nativeElement;
+        let componentInstance = componentFixture.componentInstance;
+        componentFixture.detectChanges();
+        expect(element).toBeTruthy();
+        expect(componentInstance.message).toEqual('Contact me on chnvrm@gmail.com');
+    });
+  });
+});

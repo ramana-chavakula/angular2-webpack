@@ -1,10 +1,10 @@
 import {FormControl, Validator, NG_VALIDATORS} from '@angular/forms';
-import {provide, Directive, Input, Output, EventEmitter, ElementRef, OnInit, OnDestroy} from '@angular/core';
+import {Directive, Input, Output, EventEmitter, ElementRef, OnInit, OnDestroy} from '@angular/core';
 
 let self: any;
 @Directive({
   selector: '[match-with]',
-  providers: [provide(NG_VALIDATORS, {useExisting: MatchValidatorDirective, multi: true})]
+  providers: [{provide: NG_VALIDATORS, useExisting: MatchValidatorDirective, multi: true}]
 })
 
 export class MatchValidatorDirective implements Validator {

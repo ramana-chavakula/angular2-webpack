@@ -1,24 +1,37 @@
-// import {inject, addProviders} from '@angular/core/testing';
-// import {EllipsisAfterPipe} from '../feeds.pipe.ts';
+import {
+  async, TestBed, inject
+} from '@angular/core/testing';
+import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
 
-// describe('EllipsisAfterPipe', () => {
-//   let ellipsisAfterPipe: EllipsisAfterPipe;
+import {EllipsisAfterPipe} from '../feeds.pipe.ts';
 
-//   beforeEach(() => {addProviders([EllipsisAfterPipe])});
+describe('EllipsisAfterPipe', () => {
+  let ellipsisAfterPipe: EllipsisAfterPipe;
 
-//   beforeEach(inject([EllipsisAfterPipe], (_ellipsisAfterPipe: EllipsisAfterPipe) => {
-//     ellipsisAfterPipe = _ellipsisAfterPipe;
-//   }));
+  TestBed.initTestEnvironment(
+    BrowserDynamicTestingModule,
+    platformBrowserDynamicTesting()
+  );
 
-//   it('should create the EllipsisAfterPipe', () => {
-//     expect(ellipsisAfterPipe).toBeTruthy();
-//   });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [EllipsisAfterPipe]
+    });
+  });
 
-//   it('can obtain same string incase its length is less than the limit', () => {
-//     expect(ellipsisAfterPipe.transform('abc', 10)).toEqual('abc');
-//   });
+  beforeEach(() => {
+    ellipsisAfterPipe = new EllipsisAfterPipe();
+  });
 
-//   it('can add ellipsis after the specified limit', () => {
-//     expect(ellipsisAfterPipe.transform('abcdefghijklmnopqrstuvwxyz', 10)).toEqual('abcdefghij ...');
-//   });
-// });
+  it('should create the EllipsisAfterPipe', () => {
+    expect(ellipsisAfterPipe).toBeTruthy();
+  });
+
+  it('can obtain same string incase its length is less than the limit', () => {
+    expect(ellipsisAfterPipe.transform('abc', 10)).toEqual('abc');
+  });
+
+  it('can add ellipsis after the specified limit', () => {
+    expect(ellipsisAfterPipe.transform('abcdefghijklmnopqrstuvwxyz', 10)).toEqual('abcdefghij ...');
+  });
+});

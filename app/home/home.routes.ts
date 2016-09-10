@@ -1,7 +1,7 @@
 import {FeedsListComponent} from '../feeds/feedsList.component.ts';
 import {FeedComponent} from '../feed/feed.component.ts';
 import {NewFeedComponent} from '../newFeed/newFeed.component.ts';
-import {HomeComponent} from './home.component.ts'
+import {HomeComponent} from './home.component.ts';
 
 import {Routes, RouterModule} from '@angular/router';
 

@@ -9,8 +9,7 @@ let styles = require('./feedsList.scss');
 @Component({
     selector: 'feeds-list',
     template: template,
-    styles: ['' + styles],
-    providers: [FeedsService]
+    styles: ['' + styles]
 })
 
 export class FeedsListComponent implements OnInit, OnDestroy {

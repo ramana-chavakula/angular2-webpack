@@ -15,7 +15,7 @@ export class FeedsService {
     return this.http.get('./data/feeds.json')
     .map((response: Response) => {
       let feeds: IFeed [] = response.json();
-      for(let feed of feeds) {
+      for (let feed of feeds) {
         if (feed.id === id) {
           return feed;
         }

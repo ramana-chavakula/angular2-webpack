@@ -9,8 +9,7 @@ let styles = require('./feed.scss');
 @Component({
     selector: 'feed',
     template: template,
-    styles: ['' + styles],
-    providers: [FeedsService]
+    styles: ['' + styles]
 })
 
 export class FeedComponent implements OnInit {
