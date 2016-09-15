@@ -7,11 +7,11 @@ import {EllipsisAfterPipe} from './feeds.pipe.ts';
 import {FeedComponent} from '../feed/feed.component.ts';
 import {NewFeedComponent} from '../newFeed/newFeed.component.ts';
 import {RouterModule} from '@angular/router';
-import {HttpModule, JsonpModule} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {FeedsService} from './feeds.service.ts';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, HttpModule, JsonpModule, FormsModule],
+  imports: [CommonModule, RouterModule, HttpModule, FormsModule],
   declarations: [FeedsComponent, FeedsListComponent, FeedComponent, NewFeedComponent, EllipsisAfterPipe],
   exports: [FeedsListComponent, FeedComponent, NewFeedComponent],
   providers: [FeedsService]
