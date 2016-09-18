@@ -8,6 +8,7 @@ var runSequence = require('run-sequence');
 var server = require('gulp-express');
 var surge = require('gulp-surge');
 var karmaServer = require('karma').Server;
+var sonar = require('gulp-sonar');
 
 //typescript linting task
 gulp.task('tslint', function () {
@@ -30,26 +31,26 @@ gulp.task('clean', function () {
 });
 
 //copying server file to dist folder
-gulp.task('copy', function() {
-    return gulp.src(['server.js'])
-      .pipe(gulp.dest(gulpConfig.distLoaction))
+gulp.task('copy', function () {
+  return gulp.src(['server.js'])
+    .pipe(gulp.dest(gulpConfig.distLoaction))
 });
 
 //copying json files to data in dist folder
-gulp.task('copy:data', function() {
-    return gulp.src(gulpConfig.data)
-      .pipe(gulp.dest(gulpConfig.distDataLoaction))
+gulp.task('copy:data', function () {
+  return gulp.src(gulpConfig.data)
+    .pipe(gulp.dest(gulpConfig.distDataLoaction))
 });
 
 //copying surge supported files to dist folder
-gulp.task('deploy:copy', function() {
-    return gulp.src(['404.html'])
-      .pipe(gulp.dest('www/'))
+gulp.task('deploy:copy', function () {
+  return gulp.src(['404.html'])
+    .pipe(gulp.dest('www/'))
 });
 
 //launch express server
 gulp.task('server', function () {
-    return server.run(['www/server.js']);
+  return server.run(['www/server.js']);
 });
 
 gulp.task('surge', function () {
@@ -85,4 +86,32 @@ gulp.task('test:watch', function (done) {
     configFile: __dirname + '/karma.conf.js',
     singleRun: false
   }, done).start();
+});
+
+gulp.task('sonar', function () {
+  var options = {
+    sonar: {
+      host: {
+        url: 'http://localhost:9000/'
+      },
+      projectKey: 'sonar:angular2-webpack',
+      projectName: 'angular2-webpack',
+      projectVersion: '1.0.0',
+      // comma-delimited string of source directories 
+      sources: 'app/',
+      language: 'ts',
+      ts: {
+        tslintconfigpath: 'tslint.json',
+        tslintpath: 'node_modules/tslint/bin/tslint'
+      },
+      sourceEncoding: 'UTF-8'
+    }
+  };
+
+  // gulp source doesn't matter, all files are referenced in options object above 
+  return gulp.src('thisFileDoesNotExist.js', { read: false })
+    .pipe(sonar(options))
+    .on('error', function (err) {
+      console.log(err)
+    });
 });
