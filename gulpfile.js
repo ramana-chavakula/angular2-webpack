@@ -99,7 +99,6 @@ gulp.task('sonar', function () {
       projectVersion: '1.0.0',
       // comma-delimited string of source directories 
       sources: 'app/',
-      language: 'ts',
       ts: {
         tslintconfigpath: 'tslint.json',
         tslintpath: 'node_modules/tslint/bin/tslint'
