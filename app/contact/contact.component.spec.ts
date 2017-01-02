@@ -1,4 +1,4 @@
-import {TestBed} from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
 
 import {ContactComponent} from './contact.component.ts';
@@ -15,7 +15,7 @@ describe('ContactComponent', () => {
     });
   });
 
-  it('should create the component and display a message', () => {
+  it('should create the component and display a message', async(() => {
     return TestBed
       .compileComponents().then(() => {
         let componentFixture = TestBed.createComponent(ContactComponent);
@@ -25,5 +25,5 @@ describe('ContactComponent', () => {
         expect(element).toBeTruthy();
         expect(componentInstance.message).toEqual('Contact me on chnvrm@gmail.com');
     });
-  });
+  }));
 });
