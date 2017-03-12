@@ -6,3 +6,4 @@ www/*
 coverage/
 .sonar/
 npm-debug.log
+yarn-error.log

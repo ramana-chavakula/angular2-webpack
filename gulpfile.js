@@ -3,7 +3,7 @@ var gulpConfig = require('./gulpConfigFile.js');
 // Include Our Plugins
 var del = require('del');
 var tslint = require("gulp-tslint");
-var webpack = require('gulp-webpack');
+var webpack = require('webpack');
 var runSequence = require('run-sequence');
 var server = require('gulp-express');
 var surge = require('gulp-surge');
@@ -13,25 +13,36 @@ var sonar = require('gulp-sonar');
 //typescript linting task
 gulp.task('tslint', function () {
   return gulp.src('app/**/*.ts')
-    .pipe(tslint())
-    .pipe(tslint.report("verbose"))
+  .pipe(tslint({
+    formatter: "verbose"
+  }))
+  .pipe(tslint.report());
 });
 
 // bundling task using webpack
-gulp.task('webpack', function () {
+/*
+  here webpack is an asynchronus task and that too it's not a gulp task plugin so when we execute gulp task it will start the task and trigger
+  webpack and will return saying that webpack has finshed. So, here we are using callback which will block the task to get finshed untill callback has been called.
+  which is more similar to done used for jasmine unit test cases to test asynchronus functions.
+*/
+gulp.task('webpack', function (callback) {
   var webpackConig = require('./webpack.production.config.js');
-  return gulp.src('app/app.ts')
-    .pipe(webpack(webpackConig))
-    .pipe(gulp.dest(gulpConfig.distLoaction));
+  webpack(webpackConig, function(err, stats) {
+    if(err) throw new Error("webpack", err);
+    console.log("[webpack]", stats.toString({
+        // output options
+    }));
+    callback();
+  });
 });
 
 // Clean dist folder
 gulp.task('clean', function () {
-  return del('www');
+  return del(gulpConfig.distLoaction);
 });
 
 //copying server file to dist folder
-gulp.task('copy', function () {
+gulp.task('copy:server', function () {
   return gulp.src(['server.js'])
     .pipe(gulp.dest(gulpConfig.distLoaction))
 });
@@ -45,29 +56,31 @@ gulp.task('copy:data', function () {
 //copying surge supported files to dist folder
 gulp.task('deploy:copy', function () {
   return gulp.src(['404.html'])
-    .pipe(gulp.dest('www/'))
+    .pipe(gulp.dest(gulpConfig.distLoaction))
 });
 
 //launch express server
 gulp.task('server', function () {
-  return server.run(['www/server.js']);
+  return server.run([gulpConfig.distLoaction + 'server.js']);
 });
 
 gulp.task('surge', function () {
   return surge({
-    project: './www',         // Path to your static build directory
+    project: './' + gulpConfig.distLoaction, // Path to your static build directory
     domain: 'anular2-webpack.surge.sh/'  // Your domain or Surge subdomain
   });
 })
 
 gulp.task('build', function () {
-  runSequence('clean', 'build-azure');
+  runSequence('clean', 'tslint', 'webpack', 'copy:server', 'copy:data');
 });
 
-gulp.task('build-azure', ['tslint', 'webpack', 'copy', 'copy:data']);
+gulp.task('build-azure', function () {
+  runSequence('tslint', 'webpack', 'copy:server', 'copy:data');
+});
 
-gulp.task('dist', function () {
-  runSequence('build', 'server');
+gulp.task('dist:serve', function () {
+  runSequence('clean', 'tslint', 'webpack', 'copy:server', 'copy:data', 'server');
 });
 
 gulp.task('deploy', function () {

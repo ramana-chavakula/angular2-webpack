@@ -1,7 +1,7 @@
-import {Pipe} from '@angular/core';
-@Pipe({name: 'ellipsisAfter'})
+import { Pipe } from '@angular/core';
+@Pipe({ name: 'ellipsisAfter' })
 export class EllipsisAfterPipe {
-  transform(value: string, args: any) : any {
+  public transform(value: string, args: any): any {
     if (value.length < args) {
       return value;
     }

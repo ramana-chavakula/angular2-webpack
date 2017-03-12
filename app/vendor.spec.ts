@@ -1,5 +1,5 @@
 import 'rxjs';
-//shims
+// shims
 import 'core-js/client/shim.js';
 import 'reflect-metadata';
 import 'zone.js/dist/zone';

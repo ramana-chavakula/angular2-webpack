@@ -1,13 +1,13 @@
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-import {HomeComponent} from './home/home.component.ts';
-import {ContactComponent} from './contact/contact.component.ts';
-import {SignupComponent} from './signup/signup.component.ts';
+import { HomeComponent } from './home/home.component';
+import { ContactComponent } from './contact/contact.component';
+import { SignupComponent } from './signup/signup.component';
 
 const appRoutes: Routes = [
-  {path: 'contact', component: ContactComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: '**', component: ContactComponent}
+  { path: 'contact', component: ContactComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '**', redirectTo: 'feeds' }
 ];
 
 export const routingProviders: any[] = [

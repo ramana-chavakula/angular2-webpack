@@ -1,8 +1,8 @@
 import {
   inject, fakeAsync, tick, TestBed
 } from '@angular/core/testing';
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
-import {MockBackend} from '@angular/http/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import { MockBackend } from '@angular/http/testing';
 import {
   Http,
   ConnectionBackend,
@@ -12,8 +12,8 @@ import {
 } from '@angular/http';
 import 'rxjs';
 
-import {FeedsService} from '../feeds.service.ts';
-import {IFeed} from '../IFeed.ts';
+import { FeedsService } from '../feeds.service';
+import { IFeed } from '../IFeed';
 
 describe('FeedsService', () => {
   TestBed.initTestEnvironment(
@@ -27,9 +27,11 @@ describe('FeedsService', () => {
         BaseRequestOptions,
         MockBackend,
         FeedsService,
-        {provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-          return new Http(backend, defaultOptions);
-        }, deps: [MockBackend, BaseRequestOptions]},
+        {
+          provide: Http, useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
+            return new Http(backend, defaultOptions);
+          }, deps: [MockBackend, BaseRequestOptions]
+        },
       ]
     });
   });

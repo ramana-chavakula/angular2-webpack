@@ -1,27 +1,27 @@
 import {
   inject, async, TestBed
 } from '@angular/core/testing';
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
-import {Observable, Observer} from 'rxjs';
-import {RouterTestingModule} from '@angular/router/testing';
-import {Component, Input} from '@angular/core';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import { Observable, Observer } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component, Input } from '@angular/core';
 
-import {FeedsListComponent} from '../feedsList.component.ts';
-import {FeedsComponent} from '../feeds.component.ts';
-import {EllipsisAfterPipe} from '../feeds.pipe.ts';
-import {FeedsService} from '../feeds.service.ts';
-import {IFeed} from '../IFeed.ts';
+import { FeedsListComponent } from '../feedsList.component';
+import { FeedsComponent } from '../feeds.component';
+import { EllipsisAfterPipe } from '../feeds.pipe';
+import { FeedsService } from '../feeds.service';
+import { IFeed } from '../IFeed';
 
 class MockFeedsService {
-  getFeeds (): Observable <IFeed []> {
-    return new Observable <IFeed []> ((observer: Observer<IFeed []>) => {
-      //emiting values
+  public getFeeds(): Observable<IFeed[]> {
+    return new Observable<IFeed[]>((observer: Observer<IFeed[]>) => {
+      // emiting values
       observer.next([{
         'id': 'fid1',
         'title': 'Post 1',
         'description': 'Post Description 1'
       }]);
-      //to complete stream use observer.complete();
+      // to complete stream use observer.complete();
     });
   }
 }
@@ -33,7 +33,7 @@ class MockFeedsService {
 class RouterTestingComponent {
 }
 let MockRoutes = RouterTestingModule.withRoutes([
-  {path: 'new', component: RouterTestingComponent}
+  { path: 'new', component: RouterTestingComponent }
 ]);
 
 describe('FeedsListComponent', () => {
@@ -47,7 +47,7 @@ describe('FeedsListComponent', () => {
       imports: [MockRoutes],
       declarations: [FeedsListComponent, FeedsComponent, EllipsisAfterPipe, RouterTestingComponent],
       providers: [
-        {provide: FeedsService, useClass: MockFeedsService}
+        { provide: FeedsService, useClass: MockFeedsService }
       ]
     });
   });

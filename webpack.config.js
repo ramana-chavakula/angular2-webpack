@@ -1,3 +1,4 @@
+var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
     app: './app/app.ts'
   },
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname),
     filename: "[name].js"
   },
   devtool: 'source-map',
@@ -18,44 +19,49 @@ module.exports = {
     historyApiFallback: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
         exclude: /node_modules/,
-        loader: "ts"
+        use: [{ loader: 'ts-loader' }]
       },
       {
         test: /\.html$/,
-        loader: "html"
+        exclude: /node_modules/,
+        use: ['html-loader']
       },
-       {
+      {
         test: /\.scss$/,
-        loaders: ["css", "sass"]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.css$/,
-        loaders: ["style", "css"]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: ["file"]
+        exclude: /node_modules/,
+        use: ['file-loader']
       },
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-         loaders: ["file"]
+        use: ['file-loader']
       }
     ]
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'polyfills']
+      names: ['app', 'vendor', 'polyfills']
     }),
-
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      path.resolve(__dirname, '../src')
+    ),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
   ],
   resolve: {
-    extensions: ["", ".js", ".ts"]
+    extensions: ['.js', '.ts', '.json']
   }
 }

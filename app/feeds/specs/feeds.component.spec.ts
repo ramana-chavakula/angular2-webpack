@@ -1,11 +1,11 @@
 import {
   async, TestBed
 } from '@angular/core/testing';
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
-import {Router, ActivatedRoute} from '@angular/router';
-import {FeedsComponent} from '../feeds.component.ts';
-import {EllipsisAfterPipe} from '../feeds.pipe.ts';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FeedsComponent } from '../feeds.component';
+import { EllipsisAfterPipe } from '../feeds.pipe';
 
 describe('FeedsComponent', () => {
   TestBed.initTestEnvironment(
@@ -14,7 +14,9 @@ describe('FeedsComponent', () => {
   );
 
   class MockRouter {
-    navigate () {}
+    public navigate() {
+      // empty block
+    }
   }
 
   class MockActivatedRoute { }
@@ -23,8 +25,8 @@ describe('FeedsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [FeedsComponent, EllipsisAfterPipe],
       providers: [
-        {provide: ActivatedRoute, useClass: MockActivatedRoute},
-        {provide: Router, useClass: MockRouter}
+        { provide: ActivatedRoute, useClass: MockActivatedRoute },
+        { provide: Router, useClass: MockRouter }
       ]
     });
   });
@@ -70,7 +72,7 @@ describe('FeedsComponent', () => {
         componentInstance.viewFeed(1);
         componentFixture.detectChanges();
         expect(componentInstance.viewFeed).toHaveBeenCalledWith(1);
-        expect(componentInstance.router.navigate).toHaveBeenCalledWith(['.', 'fid2'], {relativeTo: componentInstance.activatedRoute});
+        expect(componentInstance.router.navigate).toHaveBeenCalledWith(['.', 'fid2'], { relativeTo: componentInstance.activatedRoute });
       });
   }));
 });

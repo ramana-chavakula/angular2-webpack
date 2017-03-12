@@ -8,20 +8,29 @@ webpackConfig.devtool = 'inline-source-map';
 var ts = {
   configFileName: 'test.tsconfig.json'
 };
-webpackConfig.module.loaders = webpackConfig.module.loaders.slice(1);
-webpackConfig.module.loaders.push({
+// using different typescript config while testing since we need inline sourcemaps for remap coverage
+webpackConfig.module.rules = webpackConfig.module.rules.slice(1);
+webpackConfig.module.rules.push({
   test: /\.ts$/,
   exclude: /node_modules/,
-  loader: 'ts-loader?' + JSON.stringify(ts)
+  use: [
+    {
+      loader: 'ts-loader',
+      options: {
+        'configFileName': 'test.tsconfig.json'
+      }
+    }
+  ]
 });
-webpackConfig.module.postLoaders = [
+webpackConfig.module.rules.push(
   {
     test: /\.ts$/,
     exclude: [
       /node_modules\//,
       /\.(e2e|spec)\.ts$/
     ],
-    loader: 'istanbul-instrumenter'
+    enforce: "post",
+    use: ['istanbul-instrumenter-loader']
   }
-];
+);
 module.exports = webpackConfig;

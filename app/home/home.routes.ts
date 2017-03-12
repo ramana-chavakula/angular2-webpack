@@ -1,9 +1,9 @@
-import {FeedsListComponent} from '../feeds/feedsList.component.ts';
-import {FeedComponent} from '../feed/feed.component.ts';
-import {NewFeedComponent} from '../newFeed/newFeed.component.ts';
-import {HomeComponent} from './home.component.ts';
+import { FeedsListComponent } from '../feeds/feedsList.component';
+import { FeedComponent } from '../feed/feed.component';
+import { NewFeedComponent } from '../newFeed/newFeed.component';
+import { HomeComponent } from './home.component';
 
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 const homeRoutes: Routes = [
   {

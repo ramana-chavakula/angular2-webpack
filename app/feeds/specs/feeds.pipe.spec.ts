@@ -1,9 +1,9 @@
 import {
   async, TestBed, inject
 } from '@angular/core/testing';
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
-import {EllipsisAfterPipe} from '../feeds.pipe.ts';
+import { EllipsisAfterPipe } from '../feeds.pipe';
 
 describe('EllipsisAfterPipe', () => {
   let ellipsisAfterPipe: EllipsisAfterPipe;
